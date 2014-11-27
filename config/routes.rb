@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  get 'pages/:slug' => 'pages#show'
+  get 'pages/:slug' => 'pages#show', as: :page
   root 'pages#show', { slug: "home" }
 
   # Example of regular route:

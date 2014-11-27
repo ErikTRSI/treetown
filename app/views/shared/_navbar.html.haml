@@ -1,0 +1,9 @@
+= nav_bar brand: "Tree Town", inverse: true, responsive: true do
+  = menu_group do
+    - Category.all.limit(5).order(:name).each do |c|
+      - if c.pages.count == 1
+        = menu_item c.pages.first.title, page_path(c.pages.first.slug)
+      - else
+        = drop_down c.name do
+          - c.pages.each do |p|
+            = menu_item p.title, page_path(p.slug)

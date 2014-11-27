@@ -2,10 +2,21 @@
 %html
   %head
     %title
-      Treetown
+      Tree Town
     =stylesheet_link_tag    'application', media: 'all'
     =javascript_include_tag 'application'
     =csrf_meta_tags
   %body
-    =yield
-
+    .container-fluid
+      =render "shared/navbar"
+      .row
+        .col-md-2
+          = image_tag("treetown.jpg")
+          %ul
+            %li Placeholder
+            %li For bulletins
+            %li And resources
+        .col-md-7.col-xs-12.pull-left
+          =yield
+        .col-md-3
+          [Contact Info]
