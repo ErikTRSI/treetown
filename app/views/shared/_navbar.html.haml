@@ -1,6 +1,6 @@
-= nav_bar brand: "Tree Town", inverse: true, responsive: true do
+= nav_bar brand: "Tree Town", pull: :left, inverse: true, responsive: true do
   = menu_group do
-    - Category.all.limit(5).order(:name).each do |c|
+    - Category.all.limit(5).order(:id).each do |c|
       - if c.pages.count == 1
         = menu_item c.pages.first.title, page_path(c.pages.first.slug)
       - else
