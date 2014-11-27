@@ -1,4 +1,16 @@
 describe Page, :type => :model do
+  context "when looking for the homepage" do
+    before(:context) do
+      @homepage = Page.new(title: "Home", content: "wonderful homepage", category: Category.new)
+      @homepage.save
+    end
+    after(:context) do
+      @homepage.destroy
+    end
+    it "returns the Home page with the correct slug" do
+      expect(Page.homepage).to eq @homepage
+    end
+  end
   context "when new" do
     let(:page) { Page.new }
     it "should have a blank title" do

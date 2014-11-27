@@ -40,7 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'pry-rails', '~> 0.3.2', group: :development
+gem 'pry-rails', '~> 0.3.2', group: [:development, :test]
 
 gem 'rspec-rails', '~> 3.1.0', group: [:development, :test]
 

@@ -11,11 +11,19 @@ describe Category, type: :model do
       expect(category.pages).to be_empty
     end
   end
+  context "when validating" do
+    it "should be invalid with a blank name" do
+      expect(subject).to be_invalid
+    end
+  end
   context "when it is saved" do
-    let(:category) { Category.new }
-    before { category.save }
-    it "should be invalid when name is blank" do
-      expect(category).to be_invalid
+    let(:category) do
+      category = Category.new(name: "Valid name")
+      category.save
+      return category
+    end
+    it "should get a slug value" do
+      expect(category.slug).to_not be_blank
     end
   end
 end

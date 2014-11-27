@@ -6,6 +6,9 @@ class Page < ActiveRecord::Base
   validates_presence_of :content
   validates_presence_of :category
 
+  def self.homepage
+    self.where("lower(title) = ?", "home").first
+  end
   private
    def populate_slug
      self.slug = title.downcase.gsub(/ /, "-")
