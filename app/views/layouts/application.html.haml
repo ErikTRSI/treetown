@@ -2,16 +2,19 @@
 %html
   %head
     %title
-      Tree Town
+      Tree Town School
     =stylesheet_link_tag    'application', media: 'all'
     =javascript_include_tag 'application'
     =csrf_meta_tags
   %body
     .container-fluid
+      .row
+        .col-lg-6.text-left.treetown-logo Tree towN
+        .col-lg-6.text-right
+          = image_tag("kids_115x80.png", title: "toot")
       =render "shared/navbar"
       .row
         .col-md-2
-          = image_tag("treetown.jpg")
           %ul
             %li Placeholder
             %li For bulletins
@@ -19,11 +22,14 @@
         .col-md-7.col-xs-12.pull-left
           =yield
         .col-md-3
-          %p.block
-            Tree Town Cooperative Nursery School
-            235 S Kenilworth Avenue
-            Elmhurst, IL 60126
+          %address
+            %strong Tree Town Cooperative Nursery School<br>
+            235 S Kenilworth Avenue<br>
+            Elmhurst, IL 60126<br>
 
-            Phone: (630) 279-8778
-            Fax: (630) 279-8781
-            Email: treetowncoop@yahoo.com
+            %abbr{title: "Phone"} P:
+            (630) 279-8778<br>
+            %abbr{title: "Fax"} F:
+            (630) 279-8781<br>
+            %abbr{title: "Email"} E:
+            treetowncoop@yahoo.com<br>

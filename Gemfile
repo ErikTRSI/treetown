@@ -26,6 +26,9 @@ gem 'spring',        group: :development
 # HAML!
 gem 'haml-rails', '~> 0.5.3'
 
+# Less
+gem 'less-rails', '~> 2.6'
+
 # Bootstrap
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 
