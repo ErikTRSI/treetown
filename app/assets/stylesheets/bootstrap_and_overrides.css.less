@@ -29,11 +29,18 @@
 // @link-color: #ff0000;
 @body-bg: #fff;
 @navbar-inverse-bg: #001af9;
-@navbar-inverse-border: darken(@navbar-inverse-bg, 5%);
+@navbar-inverse-border: #fff;
 body {
 	background-image: url('background.png');
 	background-repeat: repeat-x;
 	background-attachment: fixed;
+}
+.page-content { 
+	background-color: #fff;
+	.border-top-radius( 5px );
+	.border-right-radius( 5px );
+	.border-bottom-radius( 5px );
+	.border-left-radius( 5px );
 }
 .treetown-logo {
 	color: @navbar-inverse-bg;
