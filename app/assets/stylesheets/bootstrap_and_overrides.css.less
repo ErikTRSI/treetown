@@ -27,8 +27,14 @@
 //
 // Example:
 // @link-color: #ff0000;
+@body-bg: #fff;
 @navbar-inverse-bg: #001af9;
 @navbar-inverse-border: darken(@navbar-inverse-bg, 5%);
+body {
+	background-image: url('background.png');
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+}
 .treetown-logo {
 	color: @navbar-inverse-bg;
 	font: small-caps 53px/80px "Times New Roman", serif;

@@ -8,14 +8,15 @@
     =csrf_meta_tags
   %body
     .container-fluid
-      .row
-        .col-lg-6.text-left.treetown-logo Tree towN
+      .row{style: "vertical-align: bottom;"}
+        .col-lg-6.text-left
+          = image_tag("treetown_text.png", title: "Tree Town")
         .col-lg-6.text-right
-          = image_tag("kids_115x80.png", title: "toot")
+          = image_tag("kids_white_115x80.png", title: "toot")
       =render "shared/navbar"
       .row
         .col-md-2
-          %ul
+          .list_group
             %li Placeholder
             %li For bulletins
             %li And resources
