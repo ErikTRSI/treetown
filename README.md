@@ -8,9 +8,11 @@ Some notes about the models involved:
 Content Hierarchy
 ===
 
-```Category
+```
+Category
 |
-|-Page```
+|-Page
+```
 
 The navbar menu is generated based on the above hierarchy. A `Page` *must* belong to a `Category`. If a `Category` has more than one page underneath it, the `Category` name will be displayed as a dropdown menu item on the navbar, with each `Page` has a selectable item on the menu. If a `Category` has only one `Page` element beneath it, that one item will be the root item for that `Category` and the `Category`'s name will not be displayed. `Page` titles must be unique, as their slug values are derived from the title property, and are generated at save-time and used as a lookup value.
 
