@@ -27,16 +27,17 @@
 //
 // Example:
 // @link-color: #ff0000;
-@body-bg: #fff;
+@body-bg: @brand-primary;
 @navbar-inverse-bg: #001af9;
-@navbar-inverse-border: #fff;
+@navbar-inverse-border: darken(@navbar-inverse-bg, 5%);
+@navbar-default-border: @navbar-default-bg;
 body {
-	background-image: url('background.png');
+	//background-image: url('background.png');
 	background-repeat: repeat-x;
 	background-attachment: fixed;
 }
 .page-content { 
-	background-color: #fff;
+	background-color: @navbar-default-bg;
 	.border-top-radius( 5px );
 	.border-right-radius( 5px );
 	.border-bottom-radius( 5px );

@@ -8,11 +8,6 @@
     =csrf_meta_tags
   %body
     .container-fluid
-      .row{style: "vertical-align: bottom;"}
-        .col-lg-6.text-left
-          = image_tag("treetown_text.png", title: "Tree Town")
-        .col-lg-6.text-right
-          = image_tag("kids_white_115x80.png", title: "toot")
       =render "shared/navbar"
       .row
         .col-md-2
@@ -20,9 +15,9 @@
             %li Placeholder
             %li For bulletins
             %li And resources
-        .col-md-7.col-xs-12.pull-left.page-content
+        .col-md-7.pull-left.page-content
           =yield
-        .col-md-3
+        .col-md-2.col-md-offset-1
           %address
             %strong Tree Town Cooperative Nursery School<br>
             235 S Kenilworth Avenue<br>
@@ -33,4 +28,4 @@
             %abbr{title: "Fax"} F:
             (630) 279-8781<br>
             %abbr{title: "Email"} E:
-            treetowncoop@yahoo.com<br>
+            %a{href: "mailto:treetowncoop@yahoo.com"}treetowncoop@yahoo.com
