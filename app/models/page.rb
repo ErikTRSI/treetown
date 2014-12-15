@@ -11,6 +11,6 @@ class Page < ActiveRecord::Base
   end
   private
    def populate_slug
-     self.slug = title.downcase.gsub(/ /, "-")
+     self.slug = title.downcase.split("").map { |c| c if c =~ /[A-Za-z0-9\- ]/ }.join.gsub(/ /, "-")
    end
 end

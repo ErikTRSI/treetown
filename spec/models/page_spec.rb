@@ -68,8 +68,20 @@ describe Page, :type => :model do
       page.save
       return page
     end
+    let(:bad_page) do
+      page = Page.new
+      page.title = "what a country??!"
+      page.content = "yakov."
+      page.category = Category.new
+      page.save
+      return page
+    end
     it "should generate a slug" do
       expect(page.slug).to_not be_blank
+    end
+    it "should have a slug without non-alphanumeric characters" do
+      slug = bad_page.slug.match /^[A-Za-z0-9\-]+$/
+      expect(slug.string).to eq bad_page.slug
     end
   end
 end
