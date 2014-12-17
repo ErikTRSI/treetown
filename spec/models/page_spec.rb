@@ -1,14 +1,9 @@
 describe Page, :type => :model do
   context "when looking for the homepage" do
-    before(:context) do
-      @homepage = Page.new(title: "Home", content: "wonderful homepage", category: Category.new)
-      @homepage.save
-    end
-    after(:context) do
-      @homepage.destroy
-    end
+    let!(:homepage) { @homepage = Page.create(title: "Home", content: "wonderful homepage", category: Category.new) }
+
     it "returns the Home page with the correct slug" do
-      expect(Page.homepage).to eq @homepage
+      expect(Page.homepage).to eq homepage
     end
   end
   context "when new" do
@@ -75,6 +70,10 @@ describe Page, :type => :model do
       page.category = Category.new
       page.save
       return page
+    end
+    it "should allow more than 255 characters in the Content field" do
+      page.content = ("0123456789" * 100)
+      expect { page.save }.to_not raise_error
     end
     it "should generate a slug" do
       expect(page.slug).to_not be_blank
