@@ -1,11 +1,20 @@
 describe Page, :type => :model do
-  context "when looking for the homepage" do
-    let!(:homepage) { @homepage = Page.create(title: "Home", content: "wonderful homepage", category: Category.new) }
+  describe ".homepage" do
+    context 'with a homepage' do
+      let!(:homepage) { @homepage = Page.create(title: "Home", content: "wonderful homepage", category: Category.new) }
 
-    it "returns the Home page with the correct slug" do
-      expect(Page.homepage).to eq homepage
+      it "returns the Home page with the correct slug" do
+        expect(Page.homepage).to eq homepage
+      end
+    end
+
+    context 'without a homepage' do
+      it 'returns nil' do
+        expect(Page.homepage).to eq nil
+      end
     end
   end
+
   context "when new" do
     let(:page) { Page.new }
     it "should have a blank title" do
@@ -18,6 +27,14 @@ describe Page, :type => :model do
       expect(page.slug).to be_blank
     end
   end
+
+  context 'validations' do
+    it 'should be invalid without all valid fields' do
+      page = Page.create(title: nil, content: nil, category: nil)
+      expect(page.errors.messages.keys).to eq [:title, :content, :category]
+    end
+  end
+
   context "when it is validated" do
     let(:category) do
       category = Category.new
@@ -53,34 +70,26 @@ describe Page, :type => :model do
       invalid_page = Page.new(title: page.title, content: "wow whatever", category: category)
       expect(invalid_page).to be_invalid
     end
-  end
-  context "when it is saved" do
-    let(:page) do
-      page = Page.new
-      page.title = "what a title"
-      page.content = "so compelling. bravo."
-      page.category = Category.new
-      page.save
-      return page
-    end
-    let(:bad_page) do
-      page = Page.new
-      page.title = "what a country??!"
-      page.content = "yakov."
-      page.category = Category.new
-      page.save
-      return page
-    end
     it "should allow more than 255 characters in the Content field" do
       page.content = ("0123456789" * 100)
       expect { page.save }.to_not raise_error
     end
-    it "should generate a slug" do
-      expect(page.slug).to_not be_blank
+  end
+
+  describe "#populate_slug" do
+    it 'changes spaces to dashes' do
+      page = Page.create(title: 'what a title', content: 'content', category: Category.new)
+      expect(page.slug).to eq 'what-a-title'
     end
-    it "should have a slug without non-alphanumeric characters" do
-      slug = bad_page.slug.match /^[A-Za-z0-9\-]+$/
-      expect(slug.string).to eq bad_page.slug
+
+    it 'removes punctuation' do
+      page = Page.create(title: 'what!@%@#$ a@#$^$$&?? title', content: 'content', category: Category.new)
+      expect(page.slug).to eq 'what-a-title'
+    end
+
+    it 'changes all characters to lowercase' do
+      page = Page.create(title: 'WHAT A TITLE', content: 'content', category: Category.new)
+      expect(page.slug).to eq 'what-a-title'
     end
   end
 end
