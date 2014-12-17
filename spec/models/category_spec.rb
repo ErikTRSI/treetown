@@ -16,7 +16,8 @@ describe Category, type: :model do
       expect(subject).to be_invalid
     end
   end
-  context "when it is saved" do
+
+  describe "#populate_slug" do
     let(:category) do
       category = Category.new(name: "Valid name")
       category.save
