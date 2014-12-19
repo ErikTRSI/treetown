@@ -1,5 +1,5 @@
 describe Category, type: :model do
-  context "when it is new" do
+  describe "when it is new" do
     let(:category) { Category.new }
     it "should have a blank name" do
       expect(category.name).to be_blank
@@ -11,20 +11,26 @@ describe Category, type: :model do
       expect(category.pages).to be_empty
     end
   end
-  context "when validating" do
+  describe "when validating" do
     it "should be invalid with a blank name" do
       expect(subject).to be_invalid
     end
   end
 
-  describe "#populate_slug" do
-    let(:category) do
-      category = Category.new(name: "Valid name")
-      category.save
-      return category
+  describe "#generate_slug" do
+    # let(:category) do
+    # end
+    it "should replace spaces with dashes" do
+      category = Category.create(name: "valid name")
+      expect(category.slug).to eq "valid-name"
     end
-    it "should get a slug value" do
-      expect(category.slug).to_not be_blank
+    it "should convert to lowercase" do
+      category = Category.create(name: "VALIDNAME")
+      expect(category.slug).to eq "validname"
+    end
+    it "should strip non-alphanumeric characters" do
+      category = Category.create(name: "valid!@$##$%^&*%^*(name")
+      expect(category.slug).to eq "validname"
     end
   end
 end

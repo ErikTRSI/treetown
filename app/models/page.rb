@@ -1,5 +1,7 @@
 class Page < ActiveRecord::Base
-  before_save :populate_slug
+  include Sluggable
+  before_save :generate_slug
+
   belongs_to :category
 
   validates_presence_of :title
@@ -13,7 +15,4 @@ class Page < ActiveRecord::Base
 
   private
 
-  def populate_slug
-    self.slug = title.downcase.gsub(/[^\w|\s]/, '').gsub(/ /, '-')
-  end
 end
