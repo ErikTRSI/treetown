@@ -1,5 +1,5 @@
 describe User, :type => :model do
-  context "when it is validated" do
+  describe "when it is validated" do
     let(:user) { User.new }
     it "should be invalid without a valid email" do
       user.name = "Parker"
@@ -24,7 +24,19 @@ describe User, :type => :model do
       expect(invalid_user).to be_invalid
     end
   end
-  context "when it is authenticated" do
+  describe ".validate_user" do
+    let(:user) { User.create(name: "Good user", email: "user@email.com", password: "right_password", password_confirmation: "right_password") }
+    it "should return nil with unrecognized email" do
+      expect(User.validate_user email: "definitelynot@no.com", password: nil).to be_falsey
+    end
+    it "should return false with wrong password" do
+      expect(User.validate_user email: user.email, password: "notright").to be_falsey
+    end
+    it "should return the user upon success" do
+      expect(User.validate_user email: user.email, password: user.password).to be_an_instance_of User
+    end
+  end
+  describe "#authenticate" do
     let(:user) do
       user = User.new
       user.name = "My User"

@@ -5,4 +5,9 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_format_of :email, with: EMAIL_REGEX
   validates_uniqueness_of :email
+
+  def self.validate_user options={}
+    return unless user ||= User.find_by_email(options[:email])
+    user.authenticate(options[:password])
+  end
 end
