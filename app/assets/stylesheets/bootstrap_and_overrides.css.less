@@ -38,6 +38,15 @@ body {
 }
 .page-content { 
 	background-color: @navbar-default-bg;
+	padding: 5px 10px 5px;
+	.border-top-radius( 5px );
+	.border-right-radius( 5px );
+	.border-bottom-radius( 5px );
+	.border-left-radius( 5px );
+}
+.sidebar {
+	background-color: darken(@gray-lighter, 10%);
+	padding: 0px 10px 0px;
 	.border-top-radius( 5px );
 	.border-right-radius( 5px );
 	.border-bottom-radius( 5px );
@@ -48,4 +57,10 @@ body {
 	font: small-caps 53px/80px "Times New Roman", serif;
 	vertical-align: bottom;
 	display: inline-block;
+}
+a.login{
+	color: @gray-lighter
+}
+a.login:hover {
+	color: lighten(@gray-lighter, 3%)
 }

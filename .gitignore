@@ -17,3 +17,4 @@
 
 # Ignore my super secret file
 /config/secrets.yml
+vendor/bundle/
