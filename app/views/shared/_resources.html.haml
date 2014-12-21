@@ -1,0 +1,10 @@
+.list_group
+  %li Placeholder
+  %li For bulletins
+  %li And resources
+%p
+  %small.text-center
+    -unless logged_in?
+      =link_to "Log in", login_path, {class: "login"}
+    -else
+      =link_to "Log out", logout_path, {class: "login"}

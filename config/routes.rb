@@ -7,6 +7,17 @@ Rails.application.routes.draw do
   get 'pages/:slug' => 'pages#show', as: :page
   root 'pages#home', { slug: "home" }
 
+  #resource :user, as: "login", via: [:get, :post]
+  #resource :login, contoller: :user, except: [:index, :show]
+  get 'login' => 'users#show_login', as: :login
+  post 'login' => 'users#login'
+  get 'logout' => 'users#logout', as: :logout
+
+  scope '/admin' do
+    resources :categories, except: [:show] do
+      resources :pages, except: [:show]
+    end
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

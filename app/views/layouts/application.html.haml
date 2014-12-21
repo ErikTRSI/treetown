@@ -11,26 +11,33 @@
       =render "shared/navbar"
       .row
         .col-md-2
-          .list_group
-            %li Placeholder
-            %li For bulletins
-            %li And resources
+          =render "shared/resources"
         .col-md-7.pull-left.page-content
+          -if flash[:notice]
+            %p.bg-success
+              =flash[:notice]
+          -if flash[:error]
+            %p.bg-danger
+              =flash[:error]
           =yield
-        .col-md-2.col-md-offset-1
-          %address
-            %strong
-              Tree Town Cooperative Nursery School
-            %br
-            235 S Kenilworth Avenue
-            %br
-            Elmhurst, IL 60126
-            %br
-            %abbr(title="Phone") P:
-            (630) 279-8778
-            %br
-            %abbr(title="Fax") F:
-            (630) 279-8781
-            %br
-            %abbr{title: "Email"} E:
-            %a{href: "mailto:treetowncoop@yahoo.com"}treetowncoop@yahoo.com
+        .col-md-2.col-md-offset-1.sidebar
+          %small
+            %address
+              %strong
+                Tree Town Cooperative Nursery School
+              %br
+              235 S Kenilworth Avenue
+              %br
+              Elmhurst, IL 60126
+              %br
+              %abbr(title="Phone") P:
+              (630) 279-8778
+              %br
+              %abbr(title="Fax") F:
+              (630) 279-8781
+              %br
+              %abbr{title: "Email"} E:
+              %a{href: "mailto:treetowncoop@yahoo.com"}treetowncoop@yahoo.com
+      =render "shared/footer"
+      =debug controller.url_options
+      =debug current_user
