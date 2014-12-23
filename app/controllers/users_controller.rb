@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.validate_user email: params[:user][:email], password: params[:user][:password]
+    user = User.find_by_email_and_authenticate email: params[:user][:email], password: params[:user][:password]
     if user
       session[:user_id] = user.id
       flash[:notice] = "Logged in successfully"

@@ -24,16 +24,16 @@ describe User, :type => :model do
       expect(invalid_user).to be_invalid
     end
   end
-  describe ".validate_user" do
+  describe ".find_by_email_and_authenticate" do
     let(:user) { User.create(name: "Good user", email: "user@email.com", password: "right_password", password_confirmation: "right_password") }
     it "should return nil with unrecognized email" do
-      expect(User.validate_user email: "definitelynot@no.com", password: nil).to be_falsey
+      expect(User.find_by_email_and_authenticate email: "definitelynot@no.com", password: nil).to be_falsey
     end
     it "should return false with wrong password" do
-      expect(User.validate_user email: user.email, password: "notright").to be_falsey
+      expect(User.find_by_email_and_authenticate email: user.email, password: "notright").to be_falsey
     end
     it "should return the user upon success" do
-      expect(User.validate_user email: user.email, password: user.password).to be_an_instance_of User
+      expect(User.find_by_email_and_authenticate email: user.email, password: user.password).to be_an_instance_of User
     end
   end
   describe "#authenticate" do
