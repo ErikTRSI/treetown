@@ -14,10 +14,10 @@
           =render "shared/resources"
         .col-md-7.pull-left.page-content
           -if flash[:notice]
-            %p.bg-success
+            .alert.alert-success
               =flash[:notice]
           -if flash[:error]
-            %p.bg-danger
+            .alert.alert-danger
               =flash[:error]
           =yield
         .col-md-2.col-md-offset-1.sidebar

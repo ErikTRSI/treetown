@@ -14,5 +14,6 @@
         = drop_down c.name do
           - c.pages.each do |p|
             = menu_item p.title, page_path(p.slug)
-    - if logged_in?
+  - if logged_in?
+    = menu_group pull: :right do
       = menu_item "Admin", categories_path, pull: :right
