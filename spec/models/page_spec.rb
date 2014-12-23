@@ -92,4 +92,20 @@ describe Page, :type => :model do
       expect(page.slug).to eq 'what-a-title'
     end
   end
+  describe "#rank" do
+    let!(:first_page) { Page.create(title: "First Page", content: "first page", category: Category.new) }
+    let!(:second_page) { Page.create(title: "Second Page", content: "second page", category: Category.new) }
+    it "should default to 1 when the first page is saved" do
+      expect(first_page.rank).to eq 1
+    end
+    it "should autoincrement subsequent page rankings" do
+      expect(second_page.rank).to eq 2
+    end
+    it "when set to an existing value will re-rank other pages" do
+      second_page.rank = 1
+      second_page.save
+      first_page.reload
+      expect(first_page.rank).to eq 2
+    end
+  end
 end
