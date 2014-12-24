@@ -1,9 +1,29 @@
-%h1 Edit Categories
-%ul
+%h1 Edit Categories / Pages
+
+=render "category_toolbar"
+%br
 - @categories.each do |c|
-  %li
-    = link_to c.name, edit_category_path(c)
-    %ul
-      -c.pages.each do |p|
-        %li
-          =link_to p.title, edit_category_page_path(c, p)
+  .well.well-sm
+    %h2
+      =c.name
+    .btn-group.btn-group-xs{role: "group"}
+      =link_to new_category_page_path( c ), {class: "btn btn-default"} do
+        %span.fa.fa-plus
+        New Page
+      =link_to edit_category_path( c ), {class: "btn btn-default"} do
+        %span.fa.fa-edit
+      =link_to category_path( c ), { class: "btn btn-danger", method: :delete, confirm: 'Delete this page?' } do
+        %span.fa.fa-trash-o
+  .list-group
+    -c.pages.each do |p|
+      .list-group-item
+        %h4.list-group-item-heading
+          =p.title
+        -if p == Page.homepage
+          %small
+            (homepage)
+        .btn-group.btn-group-xs{role: "group"}
+          =link_to edit_admin_page_path( p ), {class: "btn btn-default"} do
+            %span.fa.fa-edit
+          =link_to admin_page_path( p ), { class: "btn btn-danger", method: :delete, confirm: 'Delete this page?' } do
+            %span.fa.fa-trash-o

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :categories, except: [:show] do
       resources :pages, except: [:show]
     end
+    resources :pages, except: [:show], as: :admin_page
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
