@@ -23,7 +23,7 @@
           %small
             (homepage)
         .btn-group.btn-group-xs{role: "group"}
-          =link_to edit_admin_page_path( p ), {class: "btn btn-default"} do
+          =link_to edit_category_page_path( c, p ), {class: "btn btn-default"} do
             %span.fa.fa-edit
           =link_to admin_page_path( p ), { class: "btn btn-danger", method: :delete, confirm: 'Delete this page?' } do
             %span.fa.fa-trash-o

@@ -1,14 +1,16 @@
 class Page < ActiveRecord::Base
   include Sluggable
+
   before_save :generate_slug, :rank_self, :rank_siblings
 
   belongs_to :category
+  has_attached_file :image, :styles => { :medium => "350x350>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_presence_of :title
   validates_uniqueness_of :title
   validates_presence_of :content
   validates_presence_of :category
-  #add validation for self.rank between 1-n
 
   def self.homepage
     self.where("lower(title) = ?", "home").first
