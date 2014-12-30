@@ -35,6 +35,9 @@ gem 'twitter-bootstrap-rails', '~> 3.2.0'
 # Paperclip
 gem 'paperclip', '~> 4.2'
 
+# Redcarpet for Markdown rendering
+gem 'redcarpet', '~> 3.2.2'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

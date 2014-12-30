@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :find_category, only: [:new, :create, :update, :edit]
   def show
     @page = Page.find_by_slug(params[:slug]) || Page.homepage
+    @markdown = redcarpet.render(@page.content).html_safe
   end
 
   def home
