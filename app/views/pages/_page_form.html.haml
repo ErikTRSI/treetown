@@ -1,12 +1,12 @@
 =form_for [@category, @page], html: { multipart: true } do |p|
-  =p.label :title
-  =p.text_field :title
-  %br
-  =p.label :image
-  =p.file_field :image
-  %br
-  =p.label :content
-  %br
-  =p.text_area :content
+  .form-group
+    =p.label :title
+    =p.text_field :title, class: "form-control"
+  .form-group
+    =p.label :image
+    =p.file_field :image, class: "form-control"
+  .form-group
+    =p.label :content
+    =p.text_area :content, rows: 20, class: "form-control"
 
-  =p.submit
+  =p.submit class: "btn btn-primary"
