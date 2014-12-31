@@ -1,6 +1,0 @@
-pages controller:
-  load by slug
-  index or edit view requires admin-level user
-  content should be sanitized on output
-  how to determine "home" page? title of page is "home"
-
