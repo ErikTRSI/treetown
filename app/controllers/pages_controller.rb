@@ -1,13 +1,12 @@
 class PagesController < ApplicationController
   before_action :find_page_or_redirect, except: [:show, :home, :new, :create]
   before_action :find_category, only: [:new, :create, :update, :edit]
+  before_action :populate_markdown, only: [:show, :home]
+
   def show
-    @page = Page.find_by_slug(params[:slug]) || Page.homepage
-    @markdown = redcarpet.render(@page.content).html_safe
   end
 
   def home
-    @page = Page.homepage
   end
 
   def edit
@@ -46,6 +45,11 @@ class PagesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_path, notice: "Page not found!"
     end
+  end
+
+  def populate_markdown
+    @page = Page.find_by_slug(params[:slug]) || Page.homepage
+    @markdown = redcarpet.render(@page.content).html_safe
   end
 
   def page_params
