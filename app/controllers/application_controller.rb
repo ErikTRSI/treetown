@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def redcarpet
-    @redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true, link_attributes: { target: "_blank" } ), autolink: true, tables: true)
   end
 end
